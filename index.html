@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smart Heritage Semarang</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f7f5ef;color:#292d2b}
+header{background:#243c35;color:white;padding:22px 7%;display:flex;justify-content:space-between;align-items:center}
+header h2{margin:0;font-size:20px}
+nav a{color:white;text-decoration:none;margin-left:15px;font-size:13px}
+.hero{padding:65px 8%;background:linear-gradient(120deg,#29483d,#8c9b78);color:white}
+.hero h1{font-size:38px;max-width:650px;margin:0 0 15px}
+.hero p{line-height:1.7;max-width:600px}
+.btn{display:inline-block;background:#d9b77b;color:#263a32;padding:12px 18px;border-radius:8px;text-decoration:none;border:0;font-weight:bold;cursor:pointer}
+section{padding:35px 7%}
+h2{color:#29483d}
+.intro{line-height:1.7;color:#555}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+.card{background:white;border-radius:13px;overflow:hidden;box-shadow:0 3px 12px #0001}
+.photo{height:125px;background:linear-gradient(135deg,#526c5b,#c3a77b);display:flex;align-items:center;justify-content:center;font-size:40px}
+.cardbody{padding:17px}
+.card h3{margin:0 0 8px;color:#29483d}
+.card p{font-size:13px;line-height:1.6;color:#666}
+.card button,.card a{margin:4px 3px 0 0;font-size:12px}
+.small{background:#29483d;color:white;padding:9px 12px;border:0;border-radius:6px;cursor:pointer;text-decoration:none;display:inline-block}
+.panel{background:#e8e9df;border-radius:14px;padding:22px}
+select{padding:12px;border:1px solid #bbb;border-radius:7px;width:100%;max-width:400px;margin:10px 0}
+footer{background:#243c35;color:white;text-align:center;padding:25px;font-size:13px}
+</style>
+</head>
+<body>
+<header>
+<h2>SMART HERITAGE</h2>
+<nav><a href="#beranda">Beranda</a><a href="#destinasi">Destinasi</a><a href="#teknologi">Teknologi</a></nav>
+</header>
+
+<div class="hero" id="beranda">
+<p>JELAJAHI WARISAN BUDAYA</p>
+<h1>Menelusuri Sejarah, Mengenal Semarang Lebih Dekat</h1>
+<p>Pengalaman wisata sejarah berbasis teknologi Internet of Things (IoT). Temukan cerita di balik bangunan dan tempat bersejarah Semarang melalui satu platform digital.</p>
+<a class="btn" href="#destinasi">Jelajahi Destinasi</a>
+</div>
+
+<section>
+<h2>Selamat Datang di Smart Heritage Semarang</h2>
+<p class="intro">Smart Heritage Semarang merupakan rancangan layanan informasi sejarah yang menghubungkan lokasi warisan budaya dengan teknologi Bluetooth Beacon. Pengunjung dapat memperoleh informasi tempat, cerita sejarah, dan akses peta melalui smartphone.</p>
+</section>
+
+<section id="destinasi">
+<h2>Destinasi Bersejarah Semarang</h2>
+<p class="intro">Pilih destinasi untuk mengenal gambaran sejarah dan informasi lokasinya.</p>
+<div class="grid" id="places"></div>
+</section>
+
+<section id="teknologi">
+<h2>Simulasi Smart Bluetooth Beacon</h2>
+<div class="panel">
+<p>Dalam rancangan ini, Bluetooth Beacon di setiap lokasi memancarkan identitas unik. Smartphone mengenali ID tersebut dan menampilkan informasi destinasi yang sesuai.</p>
+<label for="beacon">Pilih ID Beacon:</label><br>
+<select id="beacon">
+<option value="">-- Pilih simulasi beacon --</option>
+</select><br>
+<button class="btn" onclick="detect()">Simulasikan Deteksi Beacon</button>
+<p id="result" aria-live="polite">Belum ada beacon yang terdeteksi.</p>
+</div>
+<p class="intro"><b>Catatan:</b> Fitur ini masih berupa simulasi antarmuka. Penggunaan perangkat ESP32 Bluetooth Beacon dan deteksi BLE sungguhan memerlukan integrasi perangkat keras serta aplikasi atau browser yang kompatibel.</p>
+</section>
+
+<section>
+<h2>Bagaimana Sistem Bekerja?</h2>
+<div class="panel">
+<p><b>1.</b> Beacon dipasang pada lokasi bersejarah.</p>
+<p><b>2.</b> Beacon memancarkan ID unik melalui Bluetooth Low Energy (BLE).</p>
+<p><b>3.</b> Smartphone atau aplikasi pendamping mengenali ID beacon.</p>
+<p><b>4.</b> Sistem mencocokkan ID dengan basis data destinasi.</p>
+<p><b>5.</b> Informasi sejarah ditampilkan kepada pengunjung.</p>
+</div>
+</section>
+
+<footer>
+<b>SMART HERITAGE SEMARANG</b>
+<p>Inovasi IoT untuk pelestarian dan pengenalan warisan sejarah.</p>
+<p>Prototipe proyek bidang humaniora</p>
+</footer>
+
+<script>
+const data=[
+["Kota Lama Semarang","Kawasan bersejarah dengan bangunan-bangunan peninggalan masa kolonial. Jelajahi perkembangan kawasan dan jejak aktivitas perdagangan di Semarang.","SHS-KL-01","🏛️"],
+["Lawang Sewu","Bangunan ikonik Semarang yang dikenal dengan arsitektur khas dan sejarahnya sebagai bagian dari perkembangan perkeretaapian.","SHS-LS-02","🏢"],
+["Sam Poo Kong","Kompleks bangunan bersejarah yang berkaitan dengan tradisi dan jejak kedatangan Laksamana Cheng Ho.","SHS-SPK-03","⛩️"],
+["Museum Ranggawarsita","Museum yang menyimpan koleksi sejarah, budaya, dan perkembangan kehidupan masyarakat Jawa Tengah.","SHS-MR-04","🏺"],
+["Tugu Muda","Monumen di Semarang yang menjadi pengingat peristiwa perjuangan Pertempuran Lima Hari.","SHS-TM-05","🗿"],
+["Kampung Batik Semarang","Kawasan yang dikenal dengan tradisi kerajinan batik dan kehidupan budaya masyarakat setempat.","SHS-KB-06","🧵"],
+["Stasiun Semarang Tawang","Salah satu stasiun bersejarah yang menjadi bagian penting perkembangan transportasi kereta api di Semarang.","SHS-ST-07","🚉"],
+["Masjid Agung Kauman","Masjid bersejarah yang menjadi bagian dari perkembangan kehidupan keagamaan dan masyarakat Semarang.","SHS-MK-08","🕌"],
+["Vihara Buddhagaya Watugong","Kompleks tempat ibadah Buddha yang dikenal dengan bangunan pagoda dan aktivitas keagamaannya.","SHS-VW-09","🛕"]
+];
+const places=document.getElementById("places");
+const beacon=document.getElementById("beacon");
+data.forEach((p,i)=>{
+places.innerHTML+=`<article class="card">
+<div class="photo">${p[3]}</div>
+<div class="cardbody"><h3>${p[0]}</h3>
+<p>${p[1]}</p>
+<button class="small" onclick="story(${i})">Baca cerita</button>
+<a class="small" target="_blank" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(p[0]+' Semarang')}">Lihat peta</a>
+</div></article>`;
+beacon.innerHTML+=`<option value="${i}">${p[2]} — ${p[0]}</option>`;
+});
+function story(i){
+const p=data[i];
+alert(p[0]+"\n\n"+p[1]+"\n\nInformasi ini merupakan ringkasan awal dan perlu dilengkapi dengan sumber sejarah tepercaya.");
+}
+function detect(){
+const i=beacon.value;
+const result=document.getElementById("result");
+if(i===""){result.textContent="Silakan pilih ID beacon terlebih dahulu.";return;}
+const p=data[Number(i)];
+result.innerHTML="<b>Beacon terdeteksi (simulasi)!</b><br>ID: "+p[2]+"<br>Lokasi: "+p[0]+"<br>Informasi destinasi berhasil dicocokkan.";
+}
+</script>
+</body>
+                                                      </html>
